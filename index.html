@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="./js/Main.js"></script>
+    <script src="/js/Main.js"></script>
     <script src="/js/Filesystem.js"></script>
     <script src="/js/Localdata.js"></script>
+    <script src="/js/contextMenu.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -18,7 +19,13 @@
             style=" background-image: url('https://wallpaperaccess.com/full/220728.jpg');">
         </div>
         <div id="taskbar" class="h-[6%] "></div>
-
+        <ul id="context-menu"
+            class="absolute hidden border-1 list-none p-2 rounded-[5px] bg-[rgba(255,255,255,0.5)] ">
+            <li id="create-folder" class=" hover:bg-[rgba(255,255,255,0.2)] py-1 rounded-[5px] cursor-pointer px-1">Create
+                Folder</li>
+            <hr>
+            <li id="change-wallpaper" class=" hover:bg-[rgba(255,255,255,0.2)] py-1 rounded-[5px] cursor-pointer px-1">Change Wallpaper</li>
+        </ul>
     </div>
 </body>
 

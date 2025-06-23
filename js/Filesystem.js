@@ -1,8 +1,10 @@
 function setFolders() {
     console.log("chala");
-    initialdata()
     let d = JSON.parse(localStorage.getItem("data"))
+    console.log(d);
+    
     let m = document.getElementById('main');
+    m.innerHTML=""
     document.addEventListener("click", (e) => {
         console.log("Ok");
         if (!e.target.closest(".items")) {
@@ -69,9 +71,5 @@ function setFolders() {
         div.appendChild(innerdiv)
         m.appendChild(div);
     });
-
-}
-// window.setFolders=setFolders;
-function createfolder() {
 
 }

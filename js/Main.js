@@ -1,3 +1,5 @@
-  window.addEventListener("load", function () {
-            setFolders();
-        });
+document.addEventListener("DOMContentLoaded", function () {
+  initialdata()
+  // setFolders();
+  contextmenu()
+});
