@@ -2,9 +2,9 @@ function setFolders() {
     console.log("chala");
     let d = JSON.parse(localStorage.getItem("data"))
     console.log(d);
-    
+    let count = 1
     let m = document.getElementById('main');
-    m.innerHTML=""
+    m.innerHTML = ""
     document.addEventListener("click", (e) => {
         console.log("Ok");
         if (!e.target.closest(".items")) {
@@ -17,7 +17,10 @@ function setFolders() {
         let div = document.createElement("div")
         let img = document.createElement("img")
         let innerdiv = document.createElement("div")
-        div.className = "items"
+        div.classList.add("items")
+        // img.classList.add("items")
+        // innerdiv.classList.add("items")
+
         img.src = el.url
         img.alt = el.name + "image"
 
@@ -67,6 +70,7 @@ function setFolders() {
 
         innerdiv.style.color = "white"
         innerdiv.style.width = "100%"
+        div.id = `f${count++}`
         div.appendChild(img)
         div.appendChild(innerdiv)
         m.appendChild(div);
