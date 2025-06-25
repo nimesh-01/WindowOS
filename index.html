@@ -10,6 +10,7 @@
     <script src="/js/Filesystem.js"></script>
     <script src="/js/Localdata.js"></script>
     <script src="/js/contextMenu.js"></script>
+    <script src="/js/Taskbar.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -25,12 +26,10 @@
 
             <!-- Taskbar Center -->
             <div id="taskbarcenter" class="w-[40%] flex items-center gap-2">
-                
+
                 <!-- Windows Icon - Toggle Start Menu -->
-                <div id="windows"
-                    onclick="toggleStartMenu()"
-                    class="w-[40px] h-[80%] flex justify-center items-center rounded-[5px] duration-500 hover:bg-[rgba(240,248,255,1)] cursor-pointer">
-                    <img src="/assests/icons/windowicon.webp" alt="" class="h-[70%]">
+                <div id="windows" class="w-[40px] h-[80%] flex justify-center items-center rounded-[5px] duration-500 hover:bg-[rgba(240,248,255,1)] cursor-pointer"
+                    onclick="toggleStartMenu()"><img src="/assests/icons/windowicon.webp" alt="" class="h-[70%]">
                 </div>
 
                 <!-- Search Bar -->
@@ -90,51 +89,16 @@
                 </div>
 
                 <!-- Clock Script -->
-                <script>
-                    function updateClock() {
-                        const now = new Date();
-                        const hours = now.getHours().toString().padStart(2, '0');
-                        const minutes = now.getMinutes().toString().padStart(2, '0');
-                        const dateString = now.toLocaleDateString();
-                        document.getElementById("time").innerText = `${hours}:${minutes}`;
-                        document.getElementById("date").innerText = `${dateString}`;
-                    }
-                    updateClock();
-                    setInterval(updateClock, 1000);
-                </script>
             </div>
+            
+            <!-- Start Menu -->
+            <div
+            class="startmenu w-screen absolute bottom-[-100%]  flex text-center hidden transition-all duration-500 ease-in-out z-[3] bg-black/50" >
+            <img class="startmenuimg rounded-[10px] h-[600px] left-[20%] self-center" src="/assests/icons/Screenshot 2025-06-24 192821.png"
+            alt="">
         </div>
+    </div>
 
-        <!-- Start Menu -->
-        <div class="startmenu w-screen absolute bottom-[-100%] text-center hidden transition-all duration-500 ease-in-out z-[3]">
-            <img class="startmenuimg rounded-[10px] h-[600px]" src="/assests/icons/Screenshot 2025-06-24 192821.png" alt="">
-        </div>
-
-        <!-- Start Menu Toggle Script -->
-        <script>
-            const startmenu = document.querySelector('.startmenu');
-            const searchbar = document.getElementById('searchbar');
-            let flag = false;
-
-            function toggleStartMenu() {
-                flag = !flag;
-                if (flag) {
-                    startmenu.classList.remove('hidden');
-                    setTimeout(() => {
-                        startmenu.style.bottom = "6%";
-                        startmenu.style.left = "50%";
-
-                    }, 10);
-                    searchbar.style.backgroundColor = "#0651DE";
-                } else {
-                    startmenu.style.bottom = "-100%";
-                    setTimeout(() => {
-                        startmenu.classList.add('hidden');
-                    }, 300);
-                    searchbar.style.backgroundColor = "#dacbcb";
-                }
-            }
-        </script>
 
         <!-- Context Menus -->
         <ul id="context-menu" class="absolute hidden border-1 list-none p-2 rounded-[5px] bg-[rgba(255,255,255,0.5)]">
