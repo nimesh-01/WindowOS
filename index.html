@@ -15,9 +15,9 @@
 </head>
 
 <body>
-    <div id="rot" class="w-screen h-screen">
+    <div id="rot" class="w-screen h-screen ">
         <div id="main" class="h-[94%] bg-cover overflow-y-auto scroll-hide flex flex-col flex-wrap content-start gap-5"
-            style=" background-image: url('https://wallpaperaccess.com/full/220728.jpg');">
+            style=" background-image: url();">
         </div>
 
         <!-- Taskbar -->
@@ -28,8 +28,9 @@
             <div id="taskbarcenter" class="w-[40%] flex items-center gap-2">
 
                 <!-- Windows Icon - Toggle Start Menu -->
-                <div id="windows" class="w-[40px] h-[80%] flex justify-center items-center rounded-[5px] duration-500 hover:bg-[rgba(240,248,255,1)] cursor-pointer"
-                    onclick="toggleStartMenu()"><img src="/assests/icons/windowicon.webp" alt="" class="h-[70%]">
+                <div id="windows"
+                    class="w-[40px] h-[80%] flex justify-center items-center rounded-[5px] duration-500 hover:bg-[rgba(240,248,255,1)] cursor-pointer"
+                    onclick="toggleStartMenu(event)"><img src="/assests/icons/windowicon.webp" alt="" class="h-[70%]">
                 </div>
 
                 <!-- Search Bar -->
@@ -90,18 +91,22 @@
 
                 <!-- Clock Script -->
             </div>
-            
+
             <!-- Start Menu -->
             <div
-            class="startmenu w-[500px] h-[600px]  absolute bottom-[-100%] left-[28%] hidden transition-all duration-500 ease-in-out z-[3]" >
-            <img class="startmenuimg  rounded-[10px] w-[100%] h-[100%] " src="/assests/icons/Screenshot 2025-06-24 192821.png"
-            alt="">
+                class="startmenu  w-[520px] h-[600px]  absolute bottom-[-100%] left-[28%] hidden transition-all duration-500 ease-in-out z-[3]">
+                <img class="startmenuimg  rounded-[10px] w-[100%] h-[100%] "
+                    src="/assests/icons/Screenshot 2025-06-24 192821.png" alt="">
+            </div>
         </div>
-    </div>
 
 
         <!-- Context Menus -->
         <ul id="context-menu" class="absolute hidden border-1 list-none p-2 rounded-[5px] bg-[rgba(255,255,255,0.5)]">
+            <li onclick="location.reload()"
+                class="hover:bg-[rgba(255,255,255,0.2)] py-1 rounded-[5px] cursor-pointer px-1">
+                Refresh</li>
+            <hr>
             <li id="create-folder" class="hover:bg-[rgba(255,255,255,0.2)] py-1 rounded-[5px] cursor-pointer px-1">
                 Create Folder</li>
             <hr>
@@ -114,6 +119,76 @@
             <hr>
             <li id="delete" class="hover:bg-[rgba(255,255,255,0.2)] py-1 rounded-[5px] cursor-pointer px-1">Delete</li>
         </ul>
+
+        <!-- // Wallpaper window -->
+        <div id="Walls"
+            class="absolute hidden duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[5px] flex flex-col h-[400px] w-[600px] bg-[rgba(220,230,255,1)]">
+            <div class="h-[10%] w-[100%] bg-[rgba(220,230,255,1)] border-b flex justify-between">
+                <h2 class="text-lg w-[20%] flex justify-center items-center font-semibold">Wallpaper</h2>
+                <h3 class="flex  px-2 gap-2 items-center">
+                    <div onclick="removewindow()" class="h-[90%] duration-100 flex items-center hover:bg-[rgba(220,220,255,1)]"><img
+                            src="/assests/icons/window-minimize-icon.png" alt="" class="h-[80%]"></div>
+                    <div onclick="resizeWalls()" class="h-[90%] duration-100 flex items-center hover:bg-[rgba(220,220,255,1)] "><img
+                            src="/assests/icons/tab-icon.png" alt="" class="h-[80%]"></div>
+                    <div onclick="removewindow()" class="h-[90%] duration-100 flex items-center hover:bg-red-400"><img
+                            src="/assests/icons/cross-icon.png" alt="" class="h-[80%]"></div>
+                </h3>
+            </div>
+            <div class="p-3 h-[90%] flex flex-wrap justify-between items-center  overflow-y-auto gap-5 scroll-hide" onclick="setWall(event)">
+                <div
+                    class="h-[40%] w-[30%] rounded-[10px] bg-[rgba(220,230,255,1)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] flex justify-center items-center duration-200 hover:scale-105">
+                    <img src="/assests/wallpaper/pexels-bess-hamiti-83687-36487.jpg" alt=""
+                        class="rounded-[10px] h-[90%] w-[90%]">
+                </div>
+                <div
+                    class="h-[40%] w-[30%] rounded-[10px] bg-[rgba(220,230,255,1)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] flex justify-center items-center duration-200 hover:scale-105">
+                    <img src="/assests/wallpaper/pexels-david-besh-884788.jpg" alt=""
+                        class="rounded-[10px] h-[90%] w-[90%]">
+                </div>
+                <div
+                    class="h-[40%] w-[30%] rounded-[10px] bg-[rgba(220,230,255,1)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] flex justify-center items-center duration-200 hover:scale-105">
+                    <img src="/assests/wallpaper/pexels-jplenio-1632788.jpg" alt=""
+                        class="rounded-[10px] h-[90%] w-[90%]">
+                </div>
+                <div
+                    class="h-[40%] w-[30%] rounded-[10px] bg-[rgba(220,230,255,1)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] flex justify-center items-center duration-200 hover:scale-105">
+                    <img src="/assests/wallpaper/pexels-pixabay-50594.jpg" alt=""
+                        class="rounded-[10px] h-[90%] w-[90%]">
+                </div>
+                <div
+                    class="h-[40%] w-[30%] rounded-[10px] bg-[rgba(220,230,255,1)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] flex justify-center items-center duration-200 hover:scale-105">
+                    <img src="/assests/wallpaper/pexels-pixabay-52500.jpg" alt=""
+                        class="rounded-[10px] h-[90%] w-[90%]">
+                </div>
+                <div
+                    class="h-[40%] w-[30%] rounded-[10px] bg-[rgba(220,230,255,1)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] flex justify-center items-center duration-200 hover:scale-105">
+                    <img src="/assests/wallpaper/pexels-rpnickson-2775196.jpg" alt=""
+                        class="rounded-[10px] h-[90%] w-[90%]">
+                </div>
+   <div
+                    class="h-[40%] w-[30%] rounded-[10px] bg-[rgba(220,230,255,1)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] flex justify-center items-center duration-200 hover:scale-105">
+                    <img src="/assests/wallpaper/pexels-jplenio-1632788.jpg" alt=""
+                        class="rounded-[10px] h-[90%] w-[90%]">
+                </div>
+                <div
+                    class="h-[40%] w-[30%] rounded-[10px] bg-[rgba(220,230,255,1)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] flex justify-center items-center duration-200 hover:scale-105">
+                    <img src="/assests/wallpaper/pexels-pixabay-50594.jpg" alt=""
+                        class="rounded-[10px] h-[90%] w-[90%]">
+                </div>
+                <div
+                    class="h-[40%] w-[30%] rounded-[10px] bg-[rgba(220,230,255,1)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] flex justify-center items-center duration-200 hover:scale-105">
+                    <img src="/assests/wallpaper/pexels-pixabay-52500.jpg" alt=""
+                        class="rounded-[10px] h-[90%] w-[90%]">
+                </div>
+                <div
+                    class="h-[40%] w-[30%] rounded-[10px] bg-[rgba(220,230,255,1)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] flex justify-center items-center duration-200 hover:scale-105">
+                    <img src="/assests/wallpaper/pexels-rpnickson-2775196.jpg" alt=""
+                        class="rounded-[10px] h-[90%] w-[90%]">
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </body>
 

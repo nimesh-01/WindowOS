@@ -3,10 +3,13 @@ function startmenu() {
     const searchbar = document.getElementById('searchbar');
     let flag = false;
 
-    window.toggleStartMenu = function () {
-        flag = !flag;
+    window.toggleStartMenu = function (e) {
+        flag = !flag
+        console.log(flag);
+
         if (flag) {
             startmenu.style.display = "block";
+            document.body.classList.add("overflow-hidden");
             setTimeout(() => {
                 startmenu.style.bottom = "52px";
             }, 100);
@@ -16,8 +19,12 @@ function startmenu() {
                 startmenu.style.display = "none";
             }, 300)
         }
+            e.stopPropagation();
     }
-    
+    document.addEventListener("click", () => {
+        flag=false
+        startmenu.style.bottom = "-100%";
+    });
     function updateClock() {
         const now = new Date();
         const hours = now.getHours().toString().padStart(2, '0');

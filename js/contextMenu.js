@@ -1,3 +1,4 @@
+
 function contextmenu() {
     let menu = document.getElementById('context-menu');
     let create = document.getElementById('create-folder');
@@ -5,6 +6,8 @@ function contextmenu() {
     let foldermenu = document.getElementById('folder-menu');
     let rename = document.getElementById('rename');
     let deletes = document.getElementById("delete");
+
+    const startmenu = document.querySelector('.startmenu');
     let isFolder = null
     document.addEventListener("contextmenu", (e) => {
         e.preventDefault();
@@ -28,11 +31,11 @@ function contextmenu() {
         foldermenu.style.display = "none";
     });
     create.addEventListener('click', () => {
-          let ls = JSON.parse(localStorage.getItem("data"));
+        let ls = JSON.parse(localStorage.getItem("data"));
         createfolder(ls);
     })
     wallpaper.addEventListener("click", () => {
-        console.log("wallpaper folder clicked");
+        setWallpaper();
     })
     rename.addEventListener('click', () => {
         console.log("renemae folder clicked");
@@ -41,9 +44,28 @@ function contextmenu() {
         console.log(isFolder);
     })
 }
+function setWallpaper() {
+    let wallwindow = document.getElementById("Walls");
+    wallwindow.classList.remove("hidden")
+
+}
+function removewindow() {
+    let wallwindow = document.getElementById("Walls");
+    wallwindow.classList.add("hidden")
+}
+const setWall = function (e) {
+    initialwallpaper(e.target.src)
+    removewindow()
+}
+// function resizeWalls() {
+
+//     const walls = document.getElementById('Walls');
+//     walls.style.height = "90%";
+//     walls.style.width = "100%";
+// }
 function createfolder(ls) {
     let f = {
-        "name": "Folder"+ls.length,
+        "name": "Folder" + ls.length,
         "url": "assests/icons/folder.webp",
         "id": `d${ls.length}`
     }

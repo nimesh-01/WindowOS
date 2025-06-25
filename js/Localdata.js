@@ -20,3 +20,13 @@ function initialdata(val) {
     }
     setFolders()
 }
+function initialwallpaper(url) {
+    localStorage.setItem("wallpaper", JSON.stringify(url))
+    setinitialwallpaper()
+}
+function setinitialwallpaper() {
+    let wall = localStorage.getItem("wallpaper");
+     let main = document.getElementById('main');
+    main.style.backgroundImage = `url(${wall})`
+    
+}
