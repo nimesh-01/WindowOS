@@ -1,11 +1,17 @@
 function startmenu() {
     const startmenu = document.querySelector('.startmenu');
-    const searchbar = document.getElementById('searchbar');
-    let flag = false;
+    const youtube = document.querySelector('.youtube');
+    const chrome = document.querySelector('.chrome');
+    const vscode = document.querySelector('.vscode');
 
-    window.toggleStartMenu = function (e) {
+
+    let flag = false;
+    let youtubeflag = false
+    let chromeflag = false
+    let vscodeflag = false
+ 
+     window.toggleStartMenu = function (e) {
         flag = !flag
-        console.log(flag);
 
         if (flag) {
             startmenu.style.display = "block";
@@ -19,9 +25,61 @@ function startmenu() {
                 startmenu.style.display = "none";
             }, 300)
         }
-            e.stopPropagation();
+        e.stopPropagation();
     }
-    document.addEventListener("click", () => {
+
+    window.chrome = function (e) {
+        chromeflag = !chromeflag
+
+        if (chromeflag) {
+            chrome.style.display = "block";
+            document.body.classList.add("overflow-hidden");
+            setTimeout(() => {
+                chrome.style.bottom = "52px";
+            }, 100);
+        } else {
+            chrome.style.bottom = "-100%";
+            setTimeout(() => {
+                chrome.style.display = "none";
+            }, 300)
+        }
+        e.stopPropagation();
+    }
+    window.vscode = function (e) {
+        vscodeflag = !vscodeflag
+
+        if (vscodeflag) {
+            vscode.style.display = "block";
+            document.body.classList.add("overflow-hidden");
+            setTimeout(() => {
+                vscode.style.bottom = "50px";
+            }, 100);
+        } else {
+            vscode.style.bottom = "-100%";
+            setTimeout(() => {
+                vscode.style.display = "none";
+            }, 300)
+        }
+        e.stopPropagation();
+    }
+    window.youtube = function (e) {
+        youtubeflag = !youtubeflag
+
+        if (youtubeflag) {
+            youtube.style.display = "block";
+            document.body.classList.add("overflow-hidden");
+            setTimeout(() => {
+                youtube.style.bottom = "52px";
+            }, 100);
+        } else {
+            youtube.style.bottom = "-100%";
+            setTimeout(() => {
+                youtube.style.display = "none";
+            }, 300)
+        }
+        e.stopPropagation();
+    }
+document.addEventListener("click", () => {
         flag=false
         startmenu.style.bottom = "-100%";
     });
