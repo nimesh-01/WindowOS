@@ -1,17 +1,11 @@
 function startmenu() {
     const startmenu = document.querySelector('.startmenu');
-    const youtube = document.querySelector('.youtube');
-    const chrome = document.querySelector('.chrome');
-    const vscode = document.querySelector('.vscode');
-
-
+    const windowsButton = document.getElementById('windows');
     let flag = false;
-    let youtubeflag = false
-    let chromeflag = false
-    let vscodeflag = false
- 
-     window.toggleStartMenu = function (e) {
-        flag = !flag
+    setupTaskbarItems();
+
+    windowsButton.addEventListener('click', (e) => {
+        flag = !flag;
 
         if (flag) {
             startmenu.style.display = "block";
@@ -23,66 +17,19 @@ function startmenu() {
             startmenu.style.bottom = "-100%";
             setTimeout(() => {
                 startmenu.style.display = "none";
-            }, 300)
+            }, 300);
         }
         e.stopPropagation();
-    }
-
-    window.chrome = function (e) {
-        chromeflag = !chromeflag
-
-        if (chromeflag) {
-            chrome.style.display = "block";
-            document.body.classList.add("overflow-hidden");
-            setTimeout(() => {
-                chrome.style.bottom = "52px";
-            }, 100);
-        } else {
-            chrome.style.bottom = "-100%";
-            setTimeout(() => {
-                chrome.style.display = "none";
-            }, 300)
-        }
-        e.stopPropagation();
-    }
-    window.vscode = function (e) {
-        vscodeflag = !vscodeflag
-
-        if (vscodeflag) {
-            vscode.style.display = "block";
-            document.body.classList.add("overflow-hidden");
-            setTimeout(() => {
-                vscode.style.bottom = "50px";
-            }, 100);
-        } else {
-            vscode.style.bottom = "-100%";
-            setTimeout(() => {
-                vscode.style.display = "none";
-            }, 300)
-        }
-        e.stopPropagation();
-    }
-    window.youtube = function (e) {
-        youtubeflag = !youtubeflag
-
-        if (youtubeflag) {
-            youtube.style.display = "block";
-            document.body.classList.add("overflow-hidden");
-            setTimeout(() => {
-                youtube.style.bottom = "52px";
-            }, 100);
-        } else {
-            youtube.style.bottom = "-100%";
-            setTimeout(() => {
-                youtube.style.display = "none";
-            }, 300)
-        }
-        e.stopPropagation();
-    }
-document.addEventListener("click", () => {
-        flag=false
-        startmenu.style.bottom = "-100%";
     });
+
+    document.addEventListener("click", () => {
+        flag = false;
+        startmenu.style.bottom = "-100%";
+        setTimeout(() => {
+            startmenu.style.display = "none";
+        }, 300);
+    });
+
     function updateClock() {
         const now = new Date();
         const hours = now.getHours().toString().padStart(2, '0');
@@ -91,6 +38,77 @@ document.addEventListener("click", () => {
         document.getElementById("time").innerText = `${hours}:${minutes}`;
         document.getElementById("date").innerText = `${dateString}`;
     }
+
     updateClock();
     setInterval(updateClock, 1000);
 }
+
+function setupTaskbarItems() {
+    const icons = [
+        { id: "youtube", windowClass: ".youtube" },
+        { id: "chrome", windowClass: ".chrome" },
+        { id: "vscode", windowClass: ".vscode" }
+    ];
+
+    let currentlyOpen = null;
+
+    icons.forEach(icon => {
+        const button = document.getElementById(icon.id);
+        const windowElement = document.querySelector(icon.windowClass);
+
+        button.addEventListener('click', (e) => {
+            e.stopPropagation();
+
+            if (currentlyOpen && currentlyOpen !== windowElement) {
+                // Hide currently open window first
+                currentlyOpen.style.bottom = "-100%";
+
+                // After hide animation completes, show new window
+                setTimeout(() => {
+                    currentlyOpen.style.display = "none";
+
+                    windowElement.style.display = "block";
+                    document.body.classList.add("overflow-hidden");
+                    setTimeout(() => {
+                        windowElement.style.bottom = "52px";
+                    }, 100);
+
+                    currentlyOpen = windowElement;
+                }, 300);
+
+            } else if (currentlyOpen === windowElement) {
+                // If same window clicked, toggle off
+                windowElement.style.bottom = "-100%";
+                setTimeout(() => {
+                    windowElement.style.display = "none";
+                }, 300);
+                currentlyOpen = null;
+
+            } else {
+                // No window open, show clicked one
+                windowElement.style.display = "block";
+                document.body.classList.add("overflow-hidden");
+                setTimeout(() => {
+                    windowElement.style.bottom = "52px";
+                }, 100);
+
+                currentlyOpen = windowElement;
+            }
+        });
+    });
+
+    // Click anywhere else closes open window
+    document.addEventListener('click', () => {
+        if (currentlyOpen) {
+            currentlyOpen.style.bottom = "-100%";
+            setTimeout(() => {
+                currentlyOpen.style.display = "none";
+            }, 300);
+            currentlyOpen = null;
+        }
+    });
+}
+
+
+
+startmenu();
