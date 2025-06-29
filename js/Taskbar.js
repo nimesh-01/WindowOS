@@ -60,10 +60,7 @@ function setupTaskbarItems() {
             e.stopPropagation();
 
             if (currentlyOpen && currentlyOpen !== windowElement) {
-                // Hide currently open window first
                 currentlyOpen.style.bottom = "-100%";
-
-                // After hide animation completes, show new window
                 setTimeout(() => {
                     currentlyOpen.style.display = "none";
 
@@ -74,14 +71,14 @@ function setupTaskbarItems() {
                     }, 100);
 
                     currentlyOpen = windowElement;
-                }, 300);
+                }, 150);
 
             } else if (currentlyOpen === windowElement) {
                 // If same window clicked, toggle off
                 windowElement.style.bottom = "-100%";
                 setTimeout(() => {
                     windowElement.style.display = "none";
-                }, 300);
+                }, 150);
                 currentlyOpen = null;
 
             } else {
@@ -103,7 +100,7 @@ function setupTaskbarItems() {
             currentlyOpen.style.bottom = "-100%";
             setTimeout(() => {
                 currentlyOpen.style.display = "none";
-            }, 300);
+            }, 150);
             currentlyOpen = null;
         }
     });

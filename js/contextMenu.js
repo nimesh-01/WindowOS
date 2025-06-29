@@ -57,12 +57,6 @@ const setWall = function (e) {
     initialwallpaper(e.target.src)
     removewindow()
 }
-// function resizeWalls() {
-
-//     const walls = document.getElementById('Walls');
-//     walls.style.height = "90%";
-//     walls.style.width = "100%";
-// }
 function createfolder(ls) {
     let f = {
         "name": "Folder" + ls.length,

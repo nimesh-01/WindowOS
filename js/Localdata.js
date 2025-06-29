@@ -26,7 +26,13 @@ function initialwallpaper(url) {
 }
 function setinitialwallpaper() {
     let wall = localStorage.getItem("wallpaper");
-     let main = document.getElementById('main');
-    main.style.backgroundImage = `url(${wall})`
-    
+    if (wall == null || wall == '') {
+        localStorage.setItem("wallpaper", JSON.stringify("http://127.0.0.1:5500/assests/wallpaper/pexels-bess-hamiti-83687-36487.jpg"));
+        wall = localStorage.getItem("wallpaper");
+    }
+
+    let main = document.getElementById('main');
+    if (main) {
+        main.style.backgroundImage = `url(${JSON.parse(wall)})`;
+    }
 }
