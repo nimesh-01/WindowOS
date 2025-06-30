@@ -1,7 +1,12 @@
 function startmenu() {
     const startmenu = document.querySelector('.startmenu');
+    const systembar = document.querySelector('.systembar');
+
     const windowsButton = document.getElementById('windows');
+    const basicnetwork = document.getElementById('basicnetwork');
     let flag = false;
+    let sflag = false;
+
     setupTaskbarItems();
 
     windowsButton.addEventListener('click', (e) => {
@@ -20,13 +25,36 @@ function startmenu() {
             }, 300);
         }
         e.stopPropagation();
-    });
+    })
+    basicnetwork.addEventListener('click', (e) => {
+        sflag = !sflag;
+
+        if (sflag) {
+            systembar.style.display = "block";
+            document.body.classList.add("overflow-hidden");
+            setTimeout(() => {
+                systembar.style.bottom = "52px";
+            }, 100);
+        } else {
+            systembar.style.bottom = "-100%";
+            setTimeout(() => {
+                systembar.style.display = "none";
+            }, 300);
+        }
+        e.stopPropagation();
+    }
+    );
 
     document.addEventListener("click", () => {
         flag = false;
+        // sflag = false
         startmenu.style.bottom = "-100%";
+        // systembar.style.bottom = "-100%";
+
         setTimeout(() => {
             startmenu.style.display = "none";
+            // systembar.style.display = "none";
+
         }, 300);
     });
 
@@ -104,6 +132,20 @@ function setupTaskbarItems() {
             currentlyOpen = null;
         }
     });
+}
+
+function workingofsystemitems(e) {
+    let val = e.target.closest(".systembut");
+
+    if (val) {
+        if (val.classList.contains('bg-blue-500')) {
+            val.classList.remove('bg-blue-500', 'text-white');
+            val.classList.add('bg-gray-200', 'text-gray-800');
+        } else {
+            val.classList.remove('bg-gray-200', 'text-gray-800');
+            val.classList.add('bg-blue-500', 'text-white');
+        }
+    }
 }
 
 

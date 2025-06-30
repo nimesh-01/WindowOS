@@ -135,6 +135,67 @@
             <li id="delete" class="hover:bg-[rgba(255,255,255,0.2)] py-1 rounded-[5px] cursor-pointer px-1">Delete</li>
         </ul>
 
+        <div
+            class="systembar bg-gradient-to-b from-white to-gray-100 absolute bottom-[-100%] right-[5px] hidden transition-all duration-500 ease-in-out z-[5] rounded-xl p-4 shadow-lg space-y-4">
+
+            <!-- First Row -->
+            <div class="flex justify-between " onclick="workingofsystemitems(event)" >
+                <button 
+                    class="systembut flex flex-col items-center justify-center flex-1 mx-1 p-3 rounded-lg bg-blue-500 text-white">
+                    <span class="text-xl">📶</span>
+                    <span class="text-xs mt-1">Wi-Fi</span>
+                </button>
+                <button
+                    class="systembut flex flex-col items-center justify-center flex-1 mx-1 p-3 rounded-lg bg-blue-500 text-white">
+                    <span class="text-xl">🎧</span>
+                    <span class="text-xs mt-1">Bluetooth</span>
+                </button>
+                <button
+                    class="systembut flex flex-col items-center justify-center flex-1 mx-1 p-3 rounded-lg bg-gray-200 text-gray-800">
+                    <span class="text-xl">✈️</span>
+                    <span class="text-xs mt-1">Airplane mode</span>
+                </button>
+            </div>
+
+            <!-- Second Row -->
+            <div class="flex justify-between" onclick="workingofsystemitems(event)">
+                <button
+                    class="systembut flex flex-col items-center justify-center flex-1 mx-1 p-3 rounded-lg bg-gray-200 text-gray-800">
+                    <span class="text-xl">🔋</span>
+                    <span class="text-xs mt-1">Energy saver</span>
+                </button>
+                <button
+                    class="systembut flex flex-col items-center justify-center flex-1 mx-1 p-3 rounded-lg bg-gray-200 text-gray-800">
+                    <span class="text-xl">🌙</span>
+                    <span class="text-xs mt-1">Night light</span>
+                </button>
+                <button
+                    class="systembut flex flex-col items-center justify-center flex-1 mx-1 p-3 rounded-lg bg-gray-200 text-gray-800">
+                    <span class="text-xl">♿</span>
+                    <span class="text-xs mt-1">Accessibility</span>
+                </button>
+            </div>
+
+            <!-- Brightness Slider -->
+            <div class="flex items-center space-x-3">
+                <span class="text-xl">☀️</span>
+                <input type="range" class="flex-1 accent-blue-500">
+            </div>
+
+            <!-- Volume Slider -->
+            <div class="flex items-center space-x-3">
+                <span class="text-xl">🔊</span>
+                <input type="range" class="flex-1 accent-blue-500">
+            </div>
+
+            <!-- Footer -->
+            <div class="flex justify-between items-center">
+                <span class="text-sm">🔋 70%</span>
+                <button class="text-xl">⚙️</button>
+            </div>
+        </div>
+
+
         <!-- // Wallpaper window -->
         <div id="Walls"
             class="absolute hidden duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[5px] flex flex-col h-[400px] w-[600px] bg-[rgba(220,230,255,1)]">
