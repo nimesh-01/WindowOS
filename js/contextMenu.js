@@ -32,7 +32,7 @@ function contextmenu() {
     });
     create.addEventListener('click', () => {
         let ls = JSON.parse(localStorage.getItem("data"));
-        createfolder(ls);
+        createfolder();
     })
     wallpaper.addEventListener("click", () => {
         setWallpaper();
@@ -57,11 +57,16 @@ const setWall = function (e) {
     initialwallpaper(e.target.src)
     removewindow()
 }
-function createfolder(ls) {
-    let f = {
-        "name": "Folder" + ls.length,
-        "url": "assests/icons/folder.webp",
-        "id": `d${ls.length}`
+function createfolder() {
+    const folderName = prompt("Enter folder name:");
+    if (folderName && folderName.trim() !== "") {
+        const newFolder = {
+            name: folderName,
+            url: "assests/icons/folder.webp",
+            id: `d${Date.now()}`
+        };
+        initialdata(newFolder); 
+    } else {
+        alert("Folder name cannot be empty.");
     }
-    initialdata(f)
-}
+};
