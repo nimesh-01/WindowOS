@@ -41,7 +41,9 @@ function contextmenu() {
         console.log("renemae folder clicked");
     })
     deletes.addEventListener("click", () => {
-        console.log(isFolder);
+
+       deletedata(isFolder)
+
     })
 }
 function setWallpaper() {
@@ -65,7 +67,7 @@ function createfolder() {
             url: "assests/icons/folder.webp",
             id: `d${Date.now()}`
         };
-        initialdata(newFolder); 
+        initialdata(newFolder);
     } else {
         alert("Folder name cannot be empty.");
     }

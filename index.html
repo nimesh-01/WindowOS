@@ -11,6 +11,7 @@
     <script src="/js/Localdata.js"></script>
     <script src="/js/contextMenu.js"></script>
     <script src="/js/Taskbar.js"></script>
+    <script src="/js/Dragableitems.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -199,7 +200,7 @@
         <!-- // Wallpaper window -->
         <div id="Walls"
             class="absolute hidden duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[5px] flex flex-col h-[400px] w-[600px] bg-[rgba(220,230,255,1)]">
-            <div class="h-[10%] w-[100%] bg-[rgba(220,230,255,1)] border-b flex justify-between">
+            <div id="dragable" class="h-[10%]  w-[100%] bg-[rgba(220,230,255,1)] border-b flex justify-between"  >
                 <h2 class="text-lg w-[20%] flex justify-center items-center font-semibold">Wallpaper</h2>
                 <h3 class="flex  px-2 gap-2 items-center">
                     <div onclick="removewindow()"

@@ -20,13 +20,24 @@ function initialdata(val) {
     }
     setFolders()
 }
+function deletedata(val) {
+    console.log(val);
+    let folders = JSON.parse(localStorage.getItem("data") || []);
+    let newfolders = folders.filter(f => f.id != val.id);
+    localStorage.setItem("data", JSON.stringify(newfolders))
+    if (newfolders.length == 0) {
+        localStorage.removeItem('data');
+        initialdata()
+    }
+    setFolders()
+}
 function initialwallpaper(url) {
     localStorage.setItem("wallpaper", JSON.stringify(url))
     setinitialwallpaper()
 }
 function setinitialwallpaper() {
     let wall = localStorage.getItem("wallpaper");
-    if (wall == null || wall == '') {
+    if (wall == null || wall == '' || wall == undefined) {
         localStorage.setItem("wallpaper", JSON.stringify("http://127.0.0.1:5500/assests/wallpaper/pexels-bess-hamiti-83687-36487.jpg"));
         wall = localStorage.getItem("wallpaper");
     }

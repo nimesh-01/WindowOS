@@ -70,7 +70,7 @@ function setFolders() {
 
         innerdiv.style.color = "white"
         innerdiv.style.width = "100%"
-        div.id = `f${count++}`
+        div.id = `${el.id}`
         div.appendChild(img)
         div.appendChild(innerdiv)
         m.appendChild(div);
