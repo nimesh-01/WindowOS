@@ -1,7 +1,6 @@
 function startmenu() {
     const startmenu = document.querySelector('.startmenu');
     const systembar = document.querySelector('.systembar');
-
     const windowsButton = document.getElementById('windows');
     const basicnetwork = document.getElementById('basicnetwork');
     let flag = false;
@@ -79,7 +78,9 @@ function setupTaskbarItems() {
     ];
 
     let currentlyOpen = null;
-
+    const folderBtn = document.querySelector('.folderBtn')
+    const folderWindow = document.querySelector(".folderwindow");
+    const folderId = folderWindow;
     icons.forEach(icon => {
         const button = document.getElementById(icon.id);
         const windowElement = document.querySelector(icon.windowClass);
@@ -87,42 +88,71 @@ function setupTaskbarItems() {
         button.addEventListener('click', (e) => {
             e.stopPropagation();
 
+            // Close folder window if open
+            folderWindow.style.display = "none";
+
             if (currentlyOpen && currentlyOpen !== windowElement) {
                 currentlyOpen.style.bottom = "-100%";
                 setTimeout(() => {
                     currentlyOpen.style.display = "none";
-
                     windowElement.style.display = "block";
                     document.body.classList.add("overflow-hidden");
                     setTimeout(() => {
                         windowElement.style.bottom = "52px";
                     }, 100);
-
                     currentlyOpen = windowElement;
                 }, 150);
-
             } else if (currentlyOpen === windowElement) {
-                // If same window clicked, toggle off
                 windowElement.style.bottom = "-100%";
                 setTimeout(() => {
                     windowElement.style.display = "none";
                 }, 150);
                 currentlyOpen = null;
-
             } else {
-                // No window open, show clicked one
                 windowElement.style.display = "block";
                 document.body.classList.add("overflow-hidden");
                 setTimeout(() => {
                     windowElement.style.bottom = "52px";
                 }, 100);
-
                 currentlyOpen = windowElement;
             }
         });
     });
 
-    // Click anywhere else closes open window
+    // 📁 Folder button
+    folderBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        console.log("Burron clicked");
+
+        // Close any other app windows
+        if (currentlyOpen) {
+            currentlyOpen.style.bottom = "-100%";
+            setTimeout(() => {
+                currentlyOpen.style.display = "none";
+            }, 150);
+            currentlyOpen = null;
+        }
+        const isOpen = folderId.classList.contains('scale-100');
+
+        if (isOpen) {
+            folderId.classList.remove('scale-100', 'opacity-100');
+            folderId.classList.add('scale-0', 'opacity-0');
+            setTimeout(() => {
+                folderWindow.style.display = "none";
+            }, 300); // match Tailwind's duration
+        } else {
+            folderWindow.style.display = "block"; // show first
+
+            // allow a frame to paint, then trigger animation
+            setTimeout(() => {
+                folderId.classList.remove('scale-0', 'opacity-0');
+                folderId.classList.add('scale-100', 'opacity-100');
+            }, 10); // just enough delay to trigger transition
+        }
+
+    });
+
+    // Click outside closes all
     document.addEventListener('click', () => {
         if (currentlyOpen) {
             currentlyOpen.style.bottom = "-100%";
@@ -140,9 +170,7 @@ function workingofsystemitems(e) {
     if (val) {
         if (val.classList.contains('bg-blue-500')) {
             val.classList.remove('bg-blue-500', 'text-white');
-            val.classList.add('bg-gray-200', 'text-gray-800');
         } else {
-            val.classList.remove('bg-gray-200', 'text-gray-800');
             val.classList.add('bg-blue-500', 'text-white');
         }
     }

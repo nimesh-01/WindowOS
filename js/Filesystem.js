@@ -1,7 +1,5 @@
 function setFolders() {
-    console.log("chala");
     let d = JSON.parse(localStorage.getItem("data"))
-    console.log(d);
     let count = 1
     let m = document.getElementById('main');
     m.innerHTML = ""

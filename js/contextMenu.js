@@ -38,12 +38,11 @@ function contextmenu() {
         setWallpaper();
     })
     rename.addEventListener('click', () => {
-        console.log("renemae folder clicked");
+        console.log(isFolder);
+        renamefolder(isFolder)
     })
     deletes.addEventListener("click", () => {
-
-       deletedata(isFolder)
-
+        deletedata(isFolder)
     })
 }
 function setWallpaper() {
@@ -51,9 +50,18 @@ function setWallpaper() {
     wallwindow.classList.remove("hidden")
 
 }
-function removewindow() {
+function removewallwindow() {
     let wallwindow = document.getElementById("Walls");
     wallwindow.classList.add("hidden")
+}
+function removewindow() {
+    const folderWindow = document.querySelector(".folderwindow");
+    folderId = folderWindow
+    folderId.classList.remove('scale-100', 'opacity-100');
+    folderId.classList.add('scale-0', 'opacity-0');
+    setTimeout(() => {
+        folderWindow.style.display = "none";
+    }, 300); // match Tailwind's duration
 }
 const setWall = function (e) {
     initialwallpaper(e.target.src)
