@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Get viewport dimensions
             const viewportWidth = window.innerWidth;
             const viewportHeight = window.innerHeight;
-                document.body.classList.add("overflow-hidden");
+            document.body.classList.add("overflow-hidden");
 
             // Get element dimensions
             const wallWidth = walls.offsetWidth;
@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let newTop = e.clientY - offsetY;
 
             // Clamp the position to the viewport
-            newLeft = Math.max(0, Math.min(newLeft, viewportWidth ));
-            newTop = Math.max(0, Math.min(newTop, viewportHeight ));
+            newLeft = Math.max(0, Math.min(newLeft, viewportWidth));
+            newTop = Math.max(0, Math.min(newTop, viewportHeight));
 
             walls.style.left = newLeft + 'px';
             walls.style.top = newTop + 'px';

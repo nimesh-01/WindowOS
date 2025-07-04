@@ -26,6 +26,7 @@
 
 <body>
     <div id="rot" class="w-screen h-screen ">
+         <div id="overlay" class="fixed top-0 left-0 w-screen h-screen bg-black pointer-events-none z-[9999] " style="opacity: 0;"></div>
         <div id="main" class=" h-[94%] bg-cover overflow-y-auto scroll-hide flex flex-col flex-wrap content-start gap-5"
             style=" background-image: url();">
         </div>
@@ -189,7 +190,7 @@
             <!-- Brightness Slider -->
             <div class="flex items-center space-x-3">
                 <span class="text-xl">☀️</span>
-                <input type="range" class="flex-1 accent-blue-500">
+                <input type="range" id="brightnessSlider" class="flex-1 accent-blue-500">
             </div>
 
             <!-- Volume Slider -->
@@ -218,8 +219,8 @@
                     <div onclick="removewallwindow()"
                         class="h-[90%] duration-100 flex items-center hover:bg-[rgba(220,220,255,1)] "><img
                             src="/assests/icons/tab-icon.png" alt="" class="h-[80%]"></div>
-                    <div onclick="removewallwindow()" class="h-[90%] duration-100 flex items-center hover:bg-red-400"><img
-                            src="/assests/icons/cross-icon.png" alt="" class="h-[80%]"></div>
+                    <div onclick="removewallwindow()" class="h-[90%] duration-100 flex items-center hover:bg-red-400">
+                        <img src="/assests/icons/cross-icon.png" alt="" class="h-[80%]"></div>
                 </h3>
             </div>
             <div class="p-3 h-[90%] flex flex-wrap justify-between items-center  overflow-y-auto gap-5 scroll-hide"
@@ -278,7 +279,8 @@
         </div>
         <div>
 
-            <div id="folderWindows" class="folderwindow absolute z-50 w-[80%] h-[90vh]  bg-[rgba(245,245,251,1)] left-1/2 top-1/2 transform  -translate-x-1/2 -translate-y-1/2 scale-0 opacity-0
+            <div id="folderWindows"
+                class="folderwindow absolute z-50 w-[80%] h-[90vh]  bg-[rgba(245,245,251,1)] left-1/2 top-1/2 transform  -translate-x-1/2 -translate-y-1/2 scale-0 opacity-0
          transition-all duration-300 ease-in-out rounded shadow-[0_2px_8px_rgba(10,10,10,0.14)]  flex flex-col overflow-hidden hidden">
                 <!-- Topbar -->
                 <div class="flex items-center justify-between px-4 py-2  bg-gray-100">

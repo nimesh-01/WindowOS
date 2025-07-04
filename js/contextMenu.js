@@ -6,7 +6,12 @@ function contextmenu() {
     let foldermenu = document.getElementById('folder-menu');
     let rename = document.getElementById('rename');
     let deletes = document.getElementById("delete");
-
+const slider = document.getElementById("brightnessSlider");
+    const overlay = document.getElementById("overlay");
+    slider.addEventListener("input", () => {
+        const opacity = ((100 - slider.value) / 100)-0.2;
+    overlay.style.opacity = opacity;
+    });
     const startmenu = document.querySelector('.startmenu');
     let isFolder = null
     document.addEventListener("contextmenu", (e) => {
@@ -65,7 +70,7 @@ function removewindow() {
 }
 const setWall = function (e) {
     initialwallpaper(e.target.src)
-    removewindow()
+    removewallwindow()
 }
 function createfolder() {
     const folderName = prompt("Enter folder name:");
