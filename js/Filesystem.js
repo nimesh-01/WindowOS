@@ -69,6 +69,9 @@ function setFolders() {
         innerdiv.style.color = "white"
         innerdiv.style.width = "100%"
         div.id = `${el.id}`
+        if (el.id == 'PC') {
+            div.classList.add("pcs")
+        }
         div.appendChild(img)
         div.appendChild(innerdiv)
         m.appendChild(div);

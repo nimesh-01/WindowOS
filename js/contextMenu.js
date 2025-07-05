@@ -6,11 +6,11 @@ function contextmenu() {
     let foldermenu = document.getElementById('folder-menu');
     let rename = document.getElementById('rename');
     let deletes = document.getElementById("delete");
-const slider = document.getElementById("brightnessSlider");
+    const slider = document.getElementById("brightnessSlider");
     const overlay = document.getElementById("overlay");
     slider.addEventListener("input", () => {
-        const opacity = ((100 - slider.value) / 100)-0.2;
-    overlay.style.opacity = opacity;
+        const opacity = ((100 - slider.value) / 100) - 0.2;
+        overlay.style.opacity = opacity;
     });
     const startmenu = document.querySelector('.startmenu');
     let isFolder = null
@@ -47,7 +47,10 @@ const slider = document.getElementById("brightnessSlider");
         renamefolder(isFolder)
     })
     deletes.addEventListener("click", () => {
-        deletedata(isFolder)
+        if (isFolder.id != "RB" && isFolder.id!="PC") {
+            deletedata(isFolder)
+        }
+        console.log(isFolder);
     })
 }
 function setWallpaper() {
@@ -66,6 +69,15 @@ function removewindow() {
     folderId.classList.add('scale-0', 'opacity-0');
     setTimeout(() => {
         folderWindow.style.display = "none";
+    }, 300); // match Tailwind's duration
+}
+function removepcwindow() {
+  const pcWindow = document.querySelector(".PcWindows");
+   pcId = pcWindow
+    pcId.classList.remove('scale-100', 'opacity-100');
+    pcId.classList.add('scale-0', 'opacity-0');
+    setTimeout(() => {
+        pcWindow.style.display = "none";
     }, 300); // match Tailwind's duration
 }
 const setWall = function (e) {

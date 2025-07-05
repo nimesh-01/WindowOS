@@ -12,6 +12,7 @@
     <script src="/js/contextMenu.js"></script>
     <script src="/js/Taskbar.js"></script>
     <script src="/js/Dragableitems.js"></script>
+    <script src="/js/Recyclebin.js"></script>
     <link rel="stylesheet" href="style.css">
     <style>
         #rot {
@@ -26,8 +27,10 @@
 
 <body>
     <div id="rot" class="w-screen h-screen ">
-         <div id="overlay" class="fixed top-0 left-0 w-screen h-screen bg-black pointer-events-none z-[9999] " style="opacity: 0;"></div>
-        <div id="main" class=" h-[94%] bg-cover overflow-y-auto scroll-hide flex flex-col flex-wrap content-start gap-5"
+        <div id="overlay" class="fixed top-0 left-0 w-screen h-screen bg-black pointer-events-none z-[9999] "
+            style="opacity: 0;"></div>
+        <div id="main"
+            class=" h-[94%] bg-cover bg-center overflow-y-auto scroll-hide flex flex-col flex-wrap content-start gap-5"
             style=" background-image: url();">
         </div>
         <!-- Taskbar -->
@@ -220,7 +223,8 @@
                         class="h-[90%] duration-100 flex items-center hover:bg-[rgba(220,220,255,1)] "><img
                             src="/assests/icons/tab-icon.png" alt="" class="h-[80%]"></div>
                     <div onclick="removewallwindow()" class="h-[90%] duration-100 flex items-center hover:bg-red-400">
-                        <img src="/assests/icons/cross-icon.png" alt="" class="h-[80%]"></div>
+                        <img src="/assests/icons/cross-icon.png" alt="" class="h-[80%]">
+                    </div>
                 </h3>
             </div>
             <div class="p-3 h-[90%] flex flex-wrap justify-between items-center  overflow-y-auto gap-5 scroll-hide"
@@ -278,9 +282,76 @@
             </div>
         </div>
         <div>
+            <div id="recycleWindow" class="recyclewindowss absolute z-50 w-[80%] h-[90vh] bg-[rgba(245,245,251,1)] left-1/2 top-1/2 transform 
+    -translate-x-1/2 translate-y-[-51.5%] scale-0 opacity-0 transition-all duration-300 ease-in-out 
+    rounded shadow-[0_2px_8px_rgba(10,10,10,0.14)] flex flex-col overflow-hidden hidden">
+                <!-- Topbar -->
+                <div class="flex items-center justify-between px-4 py-2  bg-gray-100">
+                    <div class="flex items-center gap-2">
+                        <button class="px-2 py-1 bg-white  rounded hover:bg-gray-200">&larr;</button>
+                        <button class="px-2 py-1 bg-white rounded hover:bg-gray-200">&rarr;</button>
+                        <span class="font-semibold text-gray-700">Recycle bin</span>
+                    </div>
+
+                    <input type="text" placeholder="Recycle bin"
+                        class="w-1/3 px-3 py-1 border rounded focus:outline-none focus:ring" />
+
+                    <!-- Minimize & Close Buttons -->
+                    <div class="flex items-center justify-center gap-2">
+                        <button onclick="closeRecycleBin()"
+                            class="w-8 h-8 text-gray-700 hover:bg-gray-200 rounded flex items-center justify-center text-3xl">–</button>
+                        <button onclick="closeRecycleBin()"
+                            class="w-8 h-8 text-red-600 hover:bg-red-200 rounded flex items-center justify-center text-3xl">×</button>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="flex flex-1 overflow-hidden ">
+                    <!-- Sidebar -->
+                    <aside class="w-56 bg-gray-50 p-3 overflow-y-auto bg-[rgba(245,245,251,1)]">
+                        <h2 class="font-semibold text-gray-600 mb-2">Quick access</h2>
+                        <ul class="space-y-1">
+                            <li class="flex items-center gap-2 p-1 hover:bg-gray-200 rounded cursor-pointer">📁 Desktop
+                            </li>
+                            <li class="flex items-center gap-2 p-1 hover:bg-gray-200 rounded cursor-pointer">📁
+                                Downloads</li>
+                            <li class="flex items-center gap-2 p-1 hover:bg-gray-200 rounded cursor-pointer">📁
+                                Documents</li>
+                            <li class="flex items-center gap-2 p-1 hover:bg-gray-200 rounded cursor-pointer">📁 Pictures
+                            </li>
+                            <li class="flex items-center gap-2 p-1 hover:bg-gray-200 rounded cursor-pointer">📁 Music
+                            </li>
+                            <li class="flex items-center gap-2 p-1 hover:bg-gray-200 rounded cursor-pointer">📁 Videos
+                            </li>
+                            <hr class="my-2 border-gray-300" />
+                            <li class="ml-3 text-sm hover:bg-gray-200 p-1 rounded cursor-pointer">📁 Screenshots</li>
+                            <li class="ml-3 text-sm hover:bg-gray-200 p-1 rounded cursor-pointer">📁 windowOS</li>
+                            <li class="ml-3 text-sm hover:bg-gray-200 p-1 rounded cursor-pointer">📁 icons</li>
+                            <li class="ml-3 text-sm hover:bg-gray-200 p-1 rounded cursor-pointer">📁 js</li>
+                        </ul>
+                    </aside>
+
+                    <!-- Main Folder Area -->
+                    <main class="flex-1 p-4 overflow-auto">
+                        <div class="flex gap-2 mb-4">
+                            <button class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full">🕒 Recent</button>
+                            <button class="bg-gray-200 px-3 py-1 rounded-full">⭐ Favorites</button>
+                            <button class="bg-gray-200 px-3 py-1 rounded-full">👥 Shared</button>
+                            <button onclick="deletepermanently()"
+                                class="bg-gray-200 px-3 py-1 rounded-full cursor-pointer">Delete permanently</button>
+
+                        </div>
+
+                        <div class="flex-1 p-4 overflow-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+                            id="recycleContent">
+                            <!-- Deleted items will appear here dynamically -->
+                        </div>
+                    </main>
+                </div>
+            </div>
 
             <div id="folderWindows"
-                class="folderwindow absolute z-50 w-[80%] h-[90vh]  bg-[rgba(245,245,251,1)] left-1/2 top-1/2 transform  -translate-x-1/2 -translate-y-1/2 scale-0 opacity-0
+                class="folderwindow absolute z-40 w-[80%] h-[90vh]  bg-[rgba(245,245,251,1)] left-1/2 top-1/2 transform  -translate-x-1/2 translate-y-[-51.5%] scale-0 opacity-0
          transition-all duration-300 ease-in-out rounded shadow-[0_2px_8px_rgba(10,10,10,0.14)]  flex flex-col overflow-hidden hidden">
                 <!-- Topbar -->
                 <div class="flex items-center justify-between px-4 py-2  bg-gray-100">
@@ -391,6 +462,91 @@
                                 <div class="text-4xl">📁</div>
                                 <div class="font-medium">windowOS</div>
                                 <div class="text-xs text-gray-500">Desktop</div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+            <div id="PcWindows"
+                class="PcWindows absolute z-40 w-[80%] h-[90vh]  bg-[rgba(245,245,251,1)] left-1/2 top-1/2 transform  -translate-x-1/2 translate-y-[-51.5%] scale-0 opacity-0
+         transition-all duration-300 ease-in-out rounded shadow-[0_2px_8px_rgba(10,10,10,0.14)]  flex flex-col overflow-hidden hidden">
+                <!-- Topbar -->
+                <div class="flex items-center justify-between px-4 py-2  bg-gray-100">
+                    <div class="flex items-center gap-2">
+                        <button class="px-2 py-1 bg-white  rounded hover:bg-gray-200">&larr;</button>
+                        <button class="px-2 py-1 bg-white rounded hover:bg-gray-200">&rarr;</button>
+                        <span class="font-semibold text-gray-700">this Pc</span>
+                    </div>
+
+                    <input type="text" placeholder="Search Home"
+                        class="w-1/3 px-3 py-1 border rounded focus:outline-none focus:ring" />
+
+                    <!-- Minimize & Close Buttons -->
+                    <div class="flex items-center justify-center gap-2">
+                        <button onclick="removepcwindow()"
+                            class="w-8 h-8 text-gray-700 hover:bg-gray-200 rounded flex items-center justify-center text-3xl">–</button>
+                        <button onclick="removepcwindow()"
+                            class="w-8 h-8 text-red-600 hover:bg-red-200 rounded flex items-center justify-center text-3xl">×</button>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="flex flex-1 overflow-hidden ">
+                    <!-- Sidebar -->
+                    <aside class="w-56 bg-gray-50 p-3 overflow-y-auto bg-[rgba(245,245,251,1)]">
+                        <h2 class="font-semibold text-gray-600 mb-2">Quick access</h2>
+                        <ul class="space-y-1">
+                            <li class="flex items-center gap-2 p-1 hover:bg-gray-200 rounded cursor-pointer">📁 Desktop
+                            </li>
+                            <li class="flex items-center gap-2 p-1 hover:bg-gray-200 rounded cursor-pointer">📁
+                                Downloads</li>
+                            <li class="flex items-center gap-2 p-1 hover:bg-gray-200 rounded cursor-pointer">📁
+                                Documents</li>
+                            <li class="flex items-center gap-2 p-1 hover:bg-gray-200 rounded cursor-pointer">📁 Pictures
+                            </li>
+                            <li class="flex items-center gap-2 p-1 hover:bg-gray-200 rounded cursor-pointer">📁 Music
+                            </li>
+                            <li class="flex items-center gap-2 p-1 hover:bg-gray-200 rounded cursor-pointer">📁 Videos
+                            </li>
+                            <hr class="my-2 border-gray-300" />
+                            <li class="ml-3 text-sm hover:bg-gray-200 p-1 rounded cursor-pointer">📁 Screenshots</li>
+                            <li class="ml-3 text-sm hover:bg-gray-200 p-1 rounded cursor-pointer">📁 windowOS</li>
+                            <li class="ml-3 text-sm hover:bg-gray-200 p-1 rounded cursor-pointer">📁 icons</li>
+                            <li class="ml-3 text-sm hover:bg-gray-200 p-1 rounded cursor-pointer">📁 js</li>
+                        </ul>
+                    </aside>
+
+                    <!-- Main Folder Area -->
+                    <main class="flex-1 p-4 overflow-auto">
+                        <div class="flex gap-2 mb-4">
+                            <button class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full">🕒 Recent</button>
+                            <button class="bg-gray-200 px-3 py-1 rounded-full">⭐ Favorites</button>
+                            <button class="bg-gray-200 px-3 py-1 rounded-full">👥 Shared</button>
+                        </div>
+
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                            <!-- Folder Cards -->
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2">
+                                    <img src="/assests/icons/harddrive+window.png" alt="" class="w-15 h-15">
+                                    <span class="font-medium">OS (C:)</span>
+                                </div>
+                                <div class="w-full h-3 bg-gray-200 rounded overflow-hidden">
+                                    <div class="h-full bg-blue-600" style="width: 59%;"></div>
+                                </div>
+                                <div class="text-sm text-gray-600">141 GB free of 238 GB</div>
+                            </div>
+
+                            <!-- D Drive -->
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2">
+                                    <img src="/assests/icons/hard-drives.jpg" alt="" class="w-15 h-15">
+                                    <span class="font-medium">New Volume (D:)</span>
+                                </div>
+                                <div class="w-full h-3 bg-gray-200 rounded overflow-hidden">
+                                    <div class="h-full bg-blue-600" style="width: 92%;"></div>
+                                </div>
+                                <div class="text-sm text-gray-600">216 GB free of 235 GB</div>
                             </div>
                         </div>
                     </main>

@@ -81,6 +81,9 @@ function setupTaskbarItems() {
     const folderBtn = document.querySelector('.folderBtn')
     const folderWindow = document.querySelector(".folderwindow");
     const folderId = folderWindow;
+      const PCbtn = document.querySelector('.pcs')
+    const pcWindow = document.querySelector(".PcWindows");
+    const pcId = pcWindow;
     icons.forEach(icon => {
         const button = document.getElementById(icon.id);
         const windowElement = document.querySelector(icon.windowClass);
@@ -151,6 +154,39 @@ function setupTaskbarItems() {
         }
 
     });
+    //Pc button
+    PCbtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        console.log("Burron clicked");
+
+        // Close any other app windows
+        if (currentlyOpen) {
+            currentlyOpen.style.bottom = "-100%";
+            setTimeout(() => {
+                currentlyOpen.style.display = "none";
+            }, 150);
+            currentlyOpen = null;
+        }
+        const isOpen = folderId.classList.contains('scale-100');
+
+        if (isOpen) {
+            pcId.classList.remove('scale-100', 'opacity-100');
+            pcId.classList.add('scale-0', 'opacity-0');
+            setTimeout(() => {
+                pcWindow.style.display = "none";
+            }, 300); // match Tailwind's duration
+        } else {
+            pcWindow.style.display = "block"; // show first
+
+            // allow a frame to paint, then trigger animation
+            setTimeout(() => {
+                pcId.classList.remove('scale-0', 'opacity-0');
+                pcId.classList.add('scale-100', 'opacity-100');
+            }, 10); // just enough delay to trigger transition
+        }
+
+    });
+
 
     // Click outside closes all
     document.addEventListener('click', () => {
