@@ -30,6 +30,18 @@ function deletepermanently() {
     localStorage.removeItem('recycleBin')
     renderRecycleBin()
 }
+function restoreAll() {
+    const recycleData = JSON.parse(localStorage.getItem("recycleBin")) || [];
+    let availableData = JSON.parse(localStorage.getItem('data'))
+    recycleData.forEach(data => {
+        availableData.push(data)
+    })
+
+    localStorage.setItem("data", JSON.stringify(availableData))
+    deletepermanently()
+    setFolders()
+
+}
 // Render Recycle Bin Items from LocalStorage
 function renderRecycleBin() {
     const recycleContent = document.getElementById("recycleContent");
@@ -48,8 +60,8 @@ function renderRecycleBin() {
 
     recycleData.forEach(item => {
         const div = document.createElement("div");
-        div.className = "text-center h-max p-2 hover:bg-gray-100 rounded shadow-[0_2px_8px_rgba(10,10,10,0.14)]";
-
+        div.className = " recycleitems text-center h-max p-2 hover:bg-gray-100 rounded shadow-[0_2px_8px_rgba(10,10,10,0.14)]";
+        div.id=item.id
         div.innerHTML = `
     <div class="text-4xl">
         <img src="./assests/icons/recycle-bin.png" alt="Recycle Bin Icon" class="inline-block w-8 h-8">
@@ -109,6 +121,7 @@ function deletedata(val) {
         initialdata();
     }
     setFolders();
+    renderRecycleBin()
 }
 function renamefolder(val, name) {
     console.log(val);

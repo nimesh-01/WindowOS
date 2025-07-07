@@ -16,9 +16,6 @@ function setFolders() {
         let img = document.createElement("img")
         let innerdiv = document.createElement("div")
         div.classList.add("items")
-        // img.classList.add("items")
-        // innerdiv.classList.add("items")
-
         img.src = el.url
         img.alt = el.name + "image"
 
@@ -78,3 +75,4 @@ function setFolders() {
     });
 
 }
+

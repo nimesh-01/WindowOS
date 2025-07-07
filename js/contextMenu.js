@@ -4,8 +4,12 @@ function contextmenu() {
     let create = document.getElementById('create-folder');
     let wallpaper = document.getElementById("change-wallpaper");
     let foldermenu = document.getElementById('folder-menu');
+    let recyclemenu = document.getElementById('recycle-menu');
+
     let rename = document.getElementById('rename');
     let deletes = document.getElementById("delete");
+    let restore = document.getElementById("restore");
+
     const slider = document.getElementById("brightnessSlider");
     const overlay = document.getElementById("overlay");
     slider.addEventListener("input", () => {
@@ -14,26 +18,36 @@ function contextmenu() {
     });
     const startmenu = document.querySelector('.startmenu');
     let isFolder = null
+    let isrecycleFolder = null
     document.addEventListener("contextmenu", (e) => {
         e.preventDefault();
         console.log(e);
 
         isFolder = e.target.closest(".items")
         if (isFolder) {
-            console.log(isFolder);
             foldermenu.style.top = `${e.clientY}px`
             foldermenu.style.left = `${e.clientX}px`
             foldermenu.style.display = "block"
         }
         else {
-            menu.style.top = `${e.clientY}px`
-            menu.style.left = `${e.clientX}px`
-            menu.style.display = "block"
+            isrecycleFolder = e.target.closest(".recycleitems")
+            if (isrecycleFolder) {
+                recyclemenu.style.top = `${e.clientY}px`
+                recyclemenu.style.left = `${e.clientX}px`
+                recyclemenu.style.display = "block"
+            }
+            else {
+                menu.style.top = `${e.clientY}px`
+                menu.style.left = `${e.clientX}px`
+                menu.style.display = "block"
+            }
         }
     })
     document.addEventListener("click", () => {
         menu.style.display = "none";
         foldermenu.style.display = "none";
+        recyclemenu.style.display = "none";
+
     });
     create.addEventListener('click', () => {
         let ls = JSON.parse(localStorage.getItem("data"));
@@ -43,15 +57,32 @@ function contextmenu() {
         setWallpaper();
     })
     rename.addEventListener('click', () => {
-        console.log(isFolder);
         renamefolder(isFolder)
     })
     deletes.addEventListener("click", () => {
-        if (isFolder.id != "RB" && isFolder.id!="PC") {
+        if (isFolder.id != "RB" && isFolder.id != "PC") {
             deletedata(isFolder)
         }
-        console.log(isFolder);
     })
+    restore.addEventListener("click", () => {
+        restoreaitem(isrecycleFolder)
+    })
+}
+// yaha par he
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+
+function restoreaitem(f) {
+    console.log(f);
+    let allrecyclebindata=JSON.parse(localStorage.getItem('recycleBin'))
+    let updateddata=allrecyclebindata.filter(folder=> folder.id!=f.id)
+    
 }
 function setWallpaper() {
     let wallwindow = document.getElementById("Walls");
@@ -72,8 +103,8 @@ function removewindow() {
     }, 300); // match Tailwind's duration
 }
 function removepcwindow() {
-  const pcWindow = document.querySelector(".PcWindows");
-   pcId = pcWindow
+    const pcWindow = document.querySelector(".PcWindows");
+    pcId = pcWindow
     pcId.classList.remove('scale-100', 'opacity-100');
     pcId.classList.add('scale-0', 'opacity-0');
     setTimeout(() => {
