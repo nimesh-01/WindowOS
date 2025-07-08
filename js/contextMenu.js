@@ -82,7 +82,9 @@ function restoreaitem(f) {
     console.log(f);
     let allrecyclebindata=JSON.parse(localStorage.getItem('recycleBin'))
     let updateddata=allrecyclebindata.filter(folder=> folder.id!=f.id)
-    
+    console.log(updateddata);
+    localStorage.setItem("recycleBin",JSON.stringify(updateddata))
+    renderRecycleBin()
 }
 function setWallpaper() {
     let wallwindow = document.getElementById("Walls");
