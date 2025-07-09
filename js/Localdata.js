@@ -149,7 +149,7 @@ function initialwallpaper(url) {
 function setinitialwallpaper() {
     let wall = JSON.parse(localStorage.getItem("wallpaper"));
     if (wall == null || wall == "" || wall == undefined) {
-        localStorage.setItem("wallpaper", JSON.stringify("http://127.0.0.1:5500/assests/wallpaper/pexels-bess-hamiti-83687-36487.jpg"));
+        localStorage.setItem("wallpaper", JSON.stringify("http://127.0.0.1:5500/assests/wallpaper/faded_gallery-WUJiLwXzY6w-unsplash.jpg"));
         wall = localStorage.getItem("wallpaper");
         console.log("chala ji");
 

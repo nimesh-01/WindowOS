@@ -68,15 +68,6 @@ function contextmenu() {
         restoreaitem(isrecycleFolder)
     })
 }
-// yaha par he
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
 
 function restoreaitem(f) {
     console.log(f);

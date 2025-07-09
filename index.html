@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Window OS</title>
+    <link rel="shortcut icon" href="https://icons.iconarchive.com/icons/martz90/circle/128/windows-8-icon.png" width="128px" height="128px" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="/js/Main.js"></script>
     <script src="/js/Filesystem.js"></script>
@@ -26,11 +27,18 @@
 </head>
 
 <body>
+    <!-- Rotate Warning (for mobile portrait mode) -->
+    <div id="rotateWarning"
+        class="fixed inset-0 bg-black text-white z-[99999] flex flex-col justify-center items-center text-center p-6 hidden">
+        <p class="text-2xl font-semibold">🔄 Please rotate your device</p>
+        <p class="mt-2 text-lg">This OS works best in <span class="text-blue-400 font-bold">landscape</span> mode.</p>
+    </div>
+
     <div id="rot" class="w-screen h-screen ">
         <div id="overlay" class="fixed top-0 left-0 w-screen h-screen bg-black pointer-events-none z-[9999] "
             style="opacity: 0;"></div>
         <div id="main"
-            class=" h-[94%] bg-cover bg-center overflow-y-auto scroll-hide flex flex-col flex-wrap content-start gap-5"
+            class=" h-[94%] bg-cover bg-center overflow-y-auto scroll-hide flex flex-col flex-wrap content-start gap-3"
             style=" background-image: url();">
         </div>
         <!-- Taskbar -->
@@ -237,6 +245,21 @@
                 onclick="setWall(event)">
                 <div
                     class="h-[40%] w-[30%] rounded-[10px] bg-[rgba(220,230,255,1)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] flex justify-center items-center duration-200 hover:scale-105">
+                    <img src="/assests/wallpaper/faded_gallery-WUJiLwXzY6w-unsplash.jpg" alt=""
+                        class="rounded-[10px] h-[90%] w-[90%]">
+                </div>
+                <div
+                    class="h-[40%] w-[30%] rounded-[10px] bg-[rgba(220,230,255,1)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] flex justify-center items-center duration-200 hover:scale-105">
+                    <img src="/assests/wallpaper/tigran-kharatyan-lL1NCmptNYw-unsplash.jpg" alt=""
+                        class="rounded-[10px] h-[90%] w-[90%]">
+                </div>
+                <div
+                    class="h-[40%] w-[30%] rounded-[10px] bg-[rgba(220,230,255,1)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] flex justify-center items-center duration-200 hover:scale-105">
+                    <img src="/assests/wallpaper/warren-umoh-AMC_Xtz59fA-unsplash.jpg" alt=""
+                        class="rounded-[10px] h-[90%] w-[90%]">
+                </div>
+                <div
+                    class="h-[40%] w-[30%] rounded-[10px] bg-[rgba(220,230,255,1)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] flex justify-center items-center duration-200 hover:scale-105">
                     <img src="/assests/wallpaper/pexels-bess-hamiti-83687-36487.jpg" alt=""
                         class="rounded-[10px] h-[90%] w-[90%]">
                 </div>
@@ -265,26 +288,7 @@
                     <img src="/assests/wallpaper/pexels-rpnickson-2775196.jpg" alt=""
                         class="rounded-[10px] h-[90%] w-[90%]">
                 </div>
-                <div
-                    class="h-[40%] w-[30%] rounded-[10px] bg-[rgba(220,230,255,1)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] flex justify-center items-center duration-200 hover:scale-105">
-                    <img src="/assests/wallpaper/pexels-jplenio-1632788.jpg" alt=""
-                        class="rounded-[10px] h-[90%] w-[90%]">
-                </div>
-                <div
-                    class="h-[40%] w-[30%] rounded-[10px] bg-[rgba(220,230,255,1)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] flex justify-center items-center duration-200 hover:scale-105">
-                    <img src="/assests/wallpaper/pexels-pixabay-50594.jpg" alt=""
-                        class="rounded-[10px] h-[90%] w-[90%]">
-                </div>
-                <div
-                    class="h-[40%] w-[30%] rounded-[10px] bg-[rgba(220,230,255,1)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] flex justify-center items-center duration-200 hover:scale-105">
-                    <img src="/assests/wallpaper/pexels-pixabay-52500.jpg" alt=""
-                        class="rounded-[10px] h-[90%] w-[90%]">
-                </div>
-                <div
-                    class="h-[40%] w-[30%] rounded-[10px] bg-[rgba(220,230,255,1)] shadow-[0_4px_10px_rgba(0,0,0,0.5)] flex justify-center items-center duration-200 hover:scale-105">
-                    <img src="/assests/wallpaper/pexels-rpnickson-2775196.jpg" alt=""
-                        class="rounded-[10px] h-[90%] w-[90%]">
-                </div>
+
             </div>
         </div>
         <div>
@@ -436,10 +440,10 @@
                     <div class="flex items-center gap-2">
                         <button class="px-2 py-1 bg-white  rounded hover:bg-gray-200">&larr;</button>
                         <button class="px-2 py-1 bg-white rounded hover:bg-gray-200">&rarr;</button>
-                        <span class="font-semibold text-gray-700">this Pc</span>
+                        <span class="font-semibold text-gray-700">This Pc</span>
                     </div>
 
-                    <input type="text" placeholder="Search Home"
+                    <input type="text" placeholder="Search..."
                         class="w-1/3 px-3 py-1 border rounded focus:outline-none focus:ring" />
 
                     <!-- Minimize & Close Buttons -->
@@ -492,6 +496,24 @@
                     </main>
                 </div>
             </div>
+            <script>
+                function handleOrientation() {
+                    const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+                    const warning = document.getElementById("rotateWarning");
+                    const osUI = document.getElementById("rot");
+
+                    if (isPortrait) {
+                        warning.classList.remove("hidden");
+                        osUI.style.display = "none";
+                    } else {
+                        warning.classList.add("hidden");
+                        osUI.style.display = "block";
+                    }
+                }
+
+                window.addEventListener("load", handleOrientation);
+                window.addEventListener("resize", handleOrientation);
+            </script>
 </body>
 
 </html>

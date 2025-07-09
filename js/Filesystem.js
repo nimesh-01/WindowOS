@@ -55,7 +55,7 @@ function setFolders() {
         Object.assign(innerdiv.style, {
             color: "white",
             width: "100px",
-            padding: "5px",
+            padding: "3px",
             textAlign: "center",
             wordWrap: "break-word",
             overflowWrap: "break-word",
